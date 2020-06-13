@@ -25,7 +25,8 @@ class PlayerListingBloc extends Bloc<PlayerListingEvent,PlayerListingState>{
           yield PlayerFetchedState(players: players);
         }
       }
-      catch(_){
+      catch(error){
+        print(error);
         yield PlayerErrorState();
       } 
     }

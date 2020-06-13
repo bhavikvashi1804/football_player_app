@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   
   final PlayerRepository _playerRepository;
 
-  MyApp(this._playerRepository);
+  MyApp(this._playerRepository):assert(_playerRepository!=null);
 
 
   @override
