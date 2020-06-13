@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './services/services.dart';
+import './pages/pages.dart';
 
 void main() {
   
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Football Player',
       debugShowCheckedModeBanner: false,
-      home: Container(),
+      home: HomePage(_playerRepository),
     );
   }
 }
