@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import '../bloc/player_listing_events.dart';
 import '../bloc/player_listing_states.dart';
 import '../services/repository.dart';
@@ -12,24 +13,44 @@ class PlayerListingBloc extends Bloc<PlayerListingEvent,PlayerListingState>{
   @override
   PlayerListingState get initialState => PlayerUninitializedState();
 
+
+  //here there is one error that when every time one char user enter then search hit
+  //it makes load on internet
+
+ 
+  
+  
+  @override
+  void onTransition(Transition<PlayerListingEvent, PlayerListingState> transition) {
+    super.onTransition(transition);
+    print(transition);
+  }
+
   @override
   Stream<PlayerListingState> mapEventToState(PlayerListingEvent event)async* {
-    if(event is CountrySelectedEvent){
+   
       yield PlayerFetchingState();
       try{
-        final List<Players> players=await _playerRepository.fetchPlayersByCountry(event.nationModel.countryId);
-        if(players.length==0){
+        List<Players> _players;
+
+        if(event is CountrySelectedEvent){
+          _players=await _playerRepository.fetchPlayersByCountry(event.nationModel.countryId);
+        }
+        else if(event is SearchTextChangedEvent){
+          _players=await _playerRepository.fetchPlayersByName(event.searchTerm);
+        }
+        if(_players.length==0){
           yield PlayerEmptyState();
         }
         else{
-          yield PlayerFetchedState(players: players);
+          yield PlayerFetchedState(players: _players);
         }
       }
       catch(error){
         print(error);
         yield PlayerErrorState();
       } 
-    }
+    
   }
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:football_player/bloc/player_listing_bloc.dart';
 import 'package:football_player/pages/player_listing.dart';
+import 'package:football_player/widgets/search_bar.dart';
 import '../services/services.dart';
 import '../themes/themes.dart';
 import '../widgets/widgets.dart';
@@ -33,6 +34,8 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           children: [
             HorizontalBar(),
+            SizedBox(height: 10,),
+            SearchBar(),
             SizedBox(height: 10,),
             PlayerListing()
           ],

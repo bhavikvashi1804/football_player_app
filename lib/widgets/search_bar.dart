@@ -16,8 +16,9 @@ class SearchBar extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
       ),
       child: TextField(
-        onChanged: (term) {
-          BlocProvider.of<PlayerListingBloc>(context).add(SearchTextChangedEvent(searchTerm: term));
+        
+        onSubmitted: (value){
+          BlocProvider.of<PlayerListingBloc>(context).add(SearchTextChangedEvent(searchTerm: value));
         },
         style: searchTextStyle,
         decoration: InputDecoration(
