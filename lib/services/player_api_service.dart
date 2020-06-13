@@ -9,16 +9,17 @@ class PlayerApiProvider {
 
   Future<List<Players>> fetchPlayersByCountry(String countryId) async {
     final response = await http.get(baseUrl + "country=" + countryId);
-
     return parseResponse(response);
   }
 
   Future<List<Players>> fetchPlayersByName(String name) async {
     final response = await http.get(baseUrl+"name="+name);
-
     return parseResponse(response);
   }
 
+  
+
+  //convert the json response into List of Player
   List<Players> parseResponse(http.Response response) {
     final responseString = jsonDecode(response.body);
 
