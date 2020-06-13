@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/services.dart';
 import '../themes/themes.dart';
+import '../widgets/widgets.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -17,7 +18,13 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: Center(child: Text('Hello'),) ,
+      body: Column(
+        children: [
+          HorizontalBar(),
+          SizedBox(height: 10,),
+          Container(color: Colors.redAccent,)
+        ],
+      ) ,
     );
   }
 }
